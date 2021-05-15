@@ -1,0 +1,42 @@
+To run app on local host:
+    python manage.py runserver
+
+To create an application:
+    python manage.py startapp main
+
+Adding dependencies to application (main):
+    In settings.py of the root application (AniTracker)
+    Added 'main.apps.MainConfig' under INSTALLED_APPS
+    Apply the changes by running in the folder with manage.py, python manage.py migrate
+
+After implementing models.py of main application:
+    run python manage.py makemigrations main
+        - this command will create the newly implemented models
+        - this is similar to commit changes in git
+    run python manage.py migrate
+        - this is similar to git push in git
+        - this command applies the changes to the application
+
+To manually save items in the Database (SQLITE3):
+    run python manage.py shell to open python shell
+    run 'from main.models import Item, Category'  //import the classes
+    run 't = Category(name="anime")'    // create an object
+    run 't.save()'     //save the object into Database
+    For testing to see all objects in db:
+        - run Category.objects.all()  //this will invoke the __self__ function to display name
+
+To add an item that is under category class object
+    t = Category(name="anime")
+    t.save()
+    t.item_set.all()  //will show empty
+    t.item_set.create(geoName="US", score=88)
+    t.item_set.all()  //will show newly added item object's name
+
+To show all children objects under a parent class object (accessing each item under category):
+    t = Category(name="anime")
+    t.save()
+    t.item_set.all()   // item_set is auto-generate because of foreign key, if class name is diff then 'name_set'
+
+To iteratively access each item in item set:
+    t.item_set.get(id=2)   // id is auto generated
+
