@@ -40,3 +40,8 @@ To show all children objects under a parent class object (accessing each item un
 To iteratively access each item in item set:
     t.item_set.get(id=2)   // id is auto generated
 
+IF STATIC IMAGES OR CSS NOT LOADING OR NOT FOUND:
+https://stackoverflow.com/questions/24199029/django-cannot-find-static-files-need-a-second-pair-of-eyes-im-going-crazy
+    - follow #2
+
+

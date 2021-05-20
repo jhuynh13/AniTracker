@@ -1,16 +1,25 @@
+{% load static %}
 <html>
     <head>
         <title>AniTracker</title>
+        
+        <link rel="stylesheet" href="{% static 'main/main.css' %}">
+
     </head>
     <body>
         <div>
-            <h1>Needs Navbar</h1>
+            <h1 class="title" >AniTracker</h1>
 
-            {% block content %}
-            {% endblock %}
-            
-            {% block list %}
-            {% endblock %}
+            <div class="flex-container">
+                <div class="flex-item-left">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+                <div class="flex-item-right">
+                    {% block list %}
+                    {% endblock %}
+                </div>
+            </div>
         </div>
     </body>
 </html>
