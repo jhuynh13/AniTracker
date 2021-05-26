@@ -1,17 +1,68 @@
-    {% extends 'main/home.html' %}
+{% extends 'main/home.html' %}
+{% load static %}
 
 <!-- Box for showing anime popularity in a country
      Needs buttons of different countries and updates
      list based on button input
 -->
 {% block content %}
-    <h1>Anime Popularity in US States</h1>
+    <h1 class="testing">Anime Popularity in {{location}}</h1>
 
-    <ul>
-        {% for item in regions %}
-            <li>{{item}}</li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <canvas id="geoLocation"></canvas>
+    </div>
+
+    {{regions|json_script:"regions_json"}}
+    <script>
+
+        let geoLocation = document.getElementById('geoLocation').getContext('2d');
+        const mydata = JSON.parse(document.getElementById('regions_json').textContent);
+
+        let labels = []
+        let datas = []
+        let i;
+        for (i = 0; i < 10; i++){
+            labels.push(mydata[i][0])
+            datas.push(mydata[i][1])
+        }
+
+        let popChart = new Chart(geoLocation, {
+            type: 'bar',
+            data:{
+                labels: labels,
+                datasets:[{
+                    label:'Based on google searches',
+                    data:datas,
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    ],
+                    borderWidth:2,
+                    borderColor: '#777',
+                    hoverBorderWidth:3,
+                    hoverBorderColor: 'black',
+                    barPercentage: 0.5,
+                    categoryPercentage: 0.5,
+                }]
+            },
+            options:{
+                layout:{
+                    padding:{
+                        left:0,
+                        right:0,
+                        bottom:0,
+                        top:0
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+            }
+        });
+    </script>
+
 {% endblock %}
 
 <!-- This box shows interest over time of a given keyword
@@ -19,15 +70,14 @@
      then display these as buttons, based on a selecting a button
      update the lists for each countries results for this butotn keyword]
 
-     -  ->
-<!--
+-->
+
 {% block list %}
-    <h1>Anime PS States</h1>
+    <h1>Anime Interest Over Time in {{location}}</h1>
 
     <ul>
-        {% for item in regions %}
+        {% for item in interest %}
             <li>{{item}}</li>
         {% endfor %}
     </ul>
 {% endblock %}
--->

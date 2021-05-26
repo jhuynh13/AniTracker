@@ -2,6 +2,44 @@
     text-align: center;
 }
 
+.buttons-container{
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.buttons{
+    width: 80px;
+
+}
+
+.container{
+    width: 620px !important;
+    height: 600px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    5
+}
+
 * {
     box-sizing: border-box;
 }
