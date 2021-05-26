@@ -6,7 +6,7 @@
      list based on button input
 -->
 {% block content %}
-    <h1 class="testing">Anime Popularity in {{location}}</h1>
+    <h1 class="font">Anime Popularity in {{location}}</h1>
 
     <div class="container">
         <canvas id="geoLocation"></canvas>
@@ -73,11 +73,52 @@
 -->
 
 {% block list %}
-    <h1>Anime Interest Over Time in {{location}}</h1>
+ 
+    <h1 class="font">Anime Interest Over Time in {{location}}</h1>
 
-    <ul>
-        {% for item in interest %}
-            <li>{{item}}</li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <canvas id="interestLocation"></canvas>
+    </div>
+
+    {{interest|json_script:"interest_json"}}
+    <script>
+
+        let interestLocation = document.getElementById('interestLocation').getContext('2d');
+        const mydata2 = JSON.parse(document.getElementById('interest_json').textContent);
+
+        let labels2 = []
+        let datas2 = []
+        let x;
+        for (x = 0; x < 10; x++){
+            let temp = mydata2[x][0].substring(0,10)
+            labels2.push(temp)
+            datas2.push(mydata2[x][1])
+        }
+
+        let lineChart = new Chart(interestLocation, {
+            type: 'line',
+            data:{
+                labels: labels2,
+                datasets:[{
+                    label:'Based on google searches',
+                    data:datas2,
+                    fill: true,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options:{
+                layout:{
+                    padding:{
+                        left:0,
+                        right:0,
+                        bottom:0,
+                        top:0
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+            }
+        });
+    </script>
 {% endblock %}

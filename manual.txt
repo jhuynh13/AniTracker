@@ -1,3 +1,6 @@
+To run virtual environment containing all dependencies:
+    source venv37/bin/activate
+
 To run app on local host:
     python manage.py runserver
 
@@ -50,3 +53,7 @@ If CSS is not applying after making changes to css file, the browser is caching 
 MultiValueDictKeyError at / when performing POST/GET 
     - do not use request.POST['name']
     - use request.POST.get('name', '')
+
+Passing data into Javscript
+    - https://adamj.eu/tech/2020/02/18/safely-including-data-for-javascript-in-a-django-template/
+    

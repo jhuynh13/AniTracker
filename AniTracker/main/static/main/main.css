@@ -14,30 +14,8 @@
 }
 
 .container{
-    width: 620px !important;
-    height: 600px !important;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    5
+    width: 480px !important;
+    height: 460px !important;
 }
 
 * {
@@ -52,18 +30,25 @@
 
 .flex-item-left {
     background-color: #f1f1f1;
-    padding: 10px;
+    padding: 10px 0 10px 0;
     flex: 50%;
 }
 
 .flex-item-right {
-    background-color: dodgerblue;
-    padding: 10px;
+    background-color: #f1f1f1;
+    padding: 10px 0 10px 0;
     flex: 50%;
 }
 
-@media (max-width: 800px) {
+.radio-container input {
+    margin-left: 15px;
+}
+
+@media (max-width: 528px) {
     .flex-container {
         flex-direction: column;
+    }
+    .font{
+        font-size: 20px;
     }
 }

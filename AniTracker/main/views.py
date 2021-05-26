@@ -19,13 +19,12 @@ def home(request):
 
     # Interest Over Time
     interest_over_time_df = pytrend.interest_over_time()
-    interest_df = interest_over_time_df.tail(20)
+    interest_df = interest_over_time_df.tail(10)
     interest_array = []
     for m in interest_df.iterrows():
+       
         interest_array.append([m[0],m[1][0]])
-
-    # MAKE A SIDE BY SIDE COMPARISON OF POPULARITY OF DIFFERENT ANIME
-    # KEYWORDS OF INTEREST OVER TIME FOR DIFFERENT REGIONS
+ 
 
     # anime interest by regions in US
     interest_by_region_df = pytrend.interest_by_region()
@@ -38,3 +37,4 @@ def home(request):
 
     return render(request, "main/view.html", {"regions": region_array, "interest": interest_array, 
     "location": location})
+
