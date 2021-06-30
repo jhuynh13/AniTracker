@@ -1,2 +1,3 @@
-# AniTracker
-# Johnny Huynh
+## AniTracker
+#Introduction
+
